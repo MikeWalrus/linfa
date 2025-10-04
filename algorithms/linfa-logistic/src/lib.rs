@@ -32,6 +32,10 @@ use ndarray::{
 use ndarray_stats::QuantileExt;
 use std::default::Default;
 
+use argmin::core::observers::ObserverMode;
+use argmin_observer_slog::SlogLogger;
+
+
 #[cfg(feature = "serde")]
 use serde_crate::de::DeserializeOwned;
 #[cfg(feature = "serde")]
@@ -202,6 +206,7 @@ impl<
     ) -> Result<OptimizationResult<P, P::Solver, IterStateType<F, D>>> {
         Executor::new(problem, solver)
             .configure(|state| state.param(init_params).max_iters(self.max_iterations))
+            .add_observer(SlogLogger::term(), ObserverMode::Always)
             .run()
             .map_err(move |err| err.into())
     }

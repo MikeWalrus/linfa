@@ -28,6 +28,7 @@ ndarray-stats = "0.6.0"
 num-traits = "0.2"
 argmin = { version = "0.11.0", default-features = false }
 argmin-math = { version = "0.5", features = ["ndarray_v0_16-nolinalg"] }
+argmin-observer-slog = { version = "0.2.0" }
 thiserror = "2.0"
 
 linfa = { version = "0.8.0", path = "../.." }
